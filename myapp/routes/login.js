@@ -4,9 +4,9 @@ var bcrypt = require('bcrypt');
 var mysql = require('mysql');
 var db = mysql.createConnection({
 	host : 'localhost',
-	user : 'root',
+	user : 'matt',
 	password : '',
-	database : 'maindb'
+	database : 'WheresItAtDB'
 });
 
 
