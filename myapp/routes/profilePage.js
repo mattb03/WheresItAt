@@ -61,6 +61,7 @@ router.post('/upload', upload.any(), function(req, res, next) {
 // '/' is relative to the page youre on. the page youre on
 // is your root path ie. the root path for this file is '/profilePage'
 // so '/profilePage' = '/'
+/*
 router.post('/', function(req, res, next) {
   console.log(req.body);
   req.app.set("userEmail", req.body.email);
@@ -71,17 +72,17 @@ router.post('/', function(req, res, next) {
   		throw err;
   	res.render('profilePage', 
   		{ title: 'Welcome to your page account',
-  			/*
+  			
         firstname : result[0].firstname,
   			lastname : result[0].lastname,
         profilePicture : result[0].picture
-        */
+        
   		});
 
   });
   
 });
-
+*/
 
 
 
