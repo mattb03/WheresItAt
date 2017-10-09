@@ -10,44 +10,26 @@ var db = mysql.createConnection({
   database : 'WheresItAtDB'
 });
 
-/* GET /itemSecured page. */
+/* GET /submitComment page. */
 router.get('/', function(req, res, next) {
 	//res.render('login', { title: 'Log in to your account' });
 	
 });
 
-/* POST /itemSecured */
+/* POST /submitComment */
 router.post('/', function(req, res, next) {
 
-	Image.find({
-		where: {
-			email: User.email
-		}
-	}).complete(function(err, data) {
-		console.log(data);
-	});
-	if (!req.files) {
-		return res.status(400).send("No files were uploaded");
+	// go back if ther was no file or item name
+	if (!req.files || req.body.itemName < 1) {
+		res.redirect('/profilePage');
 	}
-	let file = req.files.itemPicture;
-	console.log(file);
-	file.mv("public/images/" + file.name, function(err) {
-		if (err) {
-			console.log("Image could not be saved to file system.");
-			throw err;
-		}
-		console.log("\"" + file.name + " successfully uploaded to server.");
-	});
+	
   	let post = {
-		email: "matt_b03@yahoo.com",
+		email: req.user.email,
 		itemName: req.body.itemName,
 		itemDescription: req.body.itemDescription,
 		fileName: file.name,
-		macbookPath: "",
-		linuxPath: "",
-		windowsPath: "WheresItAt/myapp/public/images/" + file.name,
 		image: file.data
-		
 	};
 	// '?' is a placeholder for the second argument
 	// db.query(query, placeholder, callback function)
@@ -57,13 +39,12 @@ router.post('/', function(req, res, next) {
 			throw err;
 		}
 		console.log(result);
-		validateDBFS(file.name);
-	});
-	console.log(req.body);
 
-	res.render("itemSecured", {
+		res.render("itemSecured", {
 		itemname: post.itemName
 	});
+	});
+
 });
 
 function getFilename(longName) {

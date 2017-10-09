@@ -16,17 +16,14 @@
       </div>
 
       <div class="jumbotron">
-        <h3><%= itemname %> is now secure.</h3>
-        <h3>Secure an item below:</h3>
-        <form method="post" id="uploadForm" name="uploadForm">
-          Upload a picture of the item:
-          <input type="file" id="itemPicture" name="itemPicture">
-          Name of item:
-          <input type="text" id="itemName" name="itemName" class="form-control">
-          Description of location:
-          <textarea id="itemDescription" name="itemDescription" class="form-control" rows="5"></textarea>
-          <input type="submit" id="loginButton" class="form-control">
-        </form>
+        <h3>Login to RateMyCourse</h3>
+        <form action="/profilePage" method="post">
+	      	Email:
+	      	<input type="text" id="emailInput" name="email" class="form-control">
+	      	Password:
+	      	<input type="text" id="passwordInput" name="password" class="form-control">
+	      	<input type="submit" id="loginButton" class="form-control">
+      	</form>
       </div>
 
       <div class="row marketing">
@@ -59,4 +56,4 @@
 
     </div> <!-- /container -->
 
-<script src="./javascripts/itemSecured.js"></script>
+<script src="./javascripts/login.js"></script>

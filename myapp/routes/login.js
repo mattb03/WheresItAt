@@ -19,7 +19,7 @@ db.connect(function (err) {
 
 /* GET login. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Log in to your account' });
+  res.render('login', { title: 'Log in to your account' });
 });
 
 /* POST login page */
