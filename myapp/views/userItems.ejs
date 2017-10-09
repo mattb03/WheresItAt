@@ -18,16 +18,20 @@
 
       <div class="jumbotron">
         <h3>Your secured items</h3>
+        <script type="text/javascript">
+          
 
+        </script>
         <% for (var i = 0; i < userItems.length; i++) { %>
           <div class="well">
-            <!-- each user item is a well-->  
-            <img src="../public/images/">
-            <% console.log(i) %>
-          </div>  
+            <img src="http://localhost:3000/images/<%= userItems[i].fileName %>" class="img-responsive">
+            <% console.log(userItems[i]) %>
+            
+          
         <% } %>
         
       </div>
+            <img src="C:\Users\Matt Benavides\Desktop\workspace2\WheresItAt\myapp\public\images\jsp.png">
 
       <div class="row marketing">
         <div class="col-lg-6">

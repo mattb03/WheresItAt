@@ -19,19 +19,13 @@ db.connect(function (err) {
 
 router.get('/', function(req, res, next) {
   console.log(req.app.get("userEmail"));
-  let sql = "SELECT * FROM images WHERE email=\"" + req.app.get("userEmail") + "\"";
+  let sql = "SELECT * FROM images WHERE email=\"matt_b03@yahoo.com\";"
   let query = db.query(sql, function(err, result) {
     if (err)
       throw err;
+    
     console.log(result);
-    var images = {};
-
-    for (var i = 0; i < result.length; i++) {
-      // get each picture from the images directory
-
-      
-      
-    }
+    
     res.render('userItems', { 
       title: 'Your secured items',
       userItems: result

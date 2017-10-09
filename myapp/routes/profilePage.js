@@ -41,10 +41,11 @@ router.post('/upload', upload.any(), function(req, res, next) {
   //console.log(req.files, 'files');
   //console.log(req);
   console.log(req.body);
+  console.log(req.files[0]);
   let image = {
-    filename: req.files[0].filename,
+    filename: req.files[0].path,
     itemname: req.body.itemName,
-    email: req.body.email,
+    email: "matt_b03@yahoo.com",
     description: req.body.itemDescription
   };
   let sql = "INSERT INTO images SET ?";
@@ -52,8 +53,9 @@ router.post('/upload', upload.any(), function(req, res, next) {
     if (err)
       throw err;
     console.log(result);
-    console.log("image inserted into table");
+    res.send("image inserted into table");
   });
+
 }); 
 
 // '/' is relative to the page youre on. the page youre on
