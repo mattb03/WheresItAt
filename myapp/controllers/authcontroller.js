@@ -5,7 +5,7 @@ exports.signup = function(req, res) {
 }
 
 exports.login = function(req, res) {
-	res.render('login');
+	res.render('index');
 }
 
 exports.profilePage = function(req, res) {

@@ -1,5 +1,5 @@
 var bcrypt = require('bcrypt-nodejs');
-
+var Sequelize = require('Sequelize');
 module.exports = function(passport, user) {
 	// initialize passport-local strategy and user model, which will be passed as an argument. Here's how we do this:
 	var User = user;
@@ -8,6 +8,8 @@ module.exports = function(passport, user) {
 	passport.use('local-signup', new LocalStrategy(
 	{
 		// define our request fields ie. are our passport variables
+		firstName: 'firstName',
+		lastName: 'lastName',
 		usernameField: 'email',
 		passwordField: 'password',
 		passReqToCallback: true // allows us to pass back the entire request to the callback
@@ -26,21 +28,24 @@ module.exports = function(passport, user) {
 					message: "That email is taken"
 				});
 			}
+			// create the user
+			var newUser = new User();
+			newUser.email = req.body.email;
+
+			// set the user's local credentials
 			var userPassword = generateHash(password);
-			var data = {
-				email: email,
-				password: userPassword,
-				firstname: req.body.firstname,
-				lastname: req.body.lastname
-			};
-			User.create(data).then(function(newUser, created) {
-				// values in the 'data' object are from our signup form req.body object
-				if (!newUser) {
-					return done(null, false);
+			newUser.password = userPassword;
+			newUser.firstName = req.body.firstName;
+			newUser.lastName = req.body.lastName;
+
+			// save the user
+			newUser.save(function(err) {
+				if (err) {
+					console.log("Error saving user: " + err);
+					throw err;
 				}
-				if (newUser) {
-					return done(null, newUser);
-				}
+				console.log("User registration successful!");
+				return done(null, newUser);
 			});
 		});
 	}

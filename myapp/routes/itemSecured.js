@@ -10,14 +10,22 @@ var db = mysql.createConnection({
   database : 'WheresItAtDB'
 });
 
-/* GET /submitComment page. */
+/* GET /itemSecured page. */
 router.get('/', function(req, res, next) {
 	//res.render('login', { title: 'Log in to your account' });
 	
 });
 
-/* POST /submitComment */
+/* POST /itemSecured */
 router.post('/', function(req, res, next) {
+
+	Image.find({
+		where: {
+			email: User.email
+		}
+	}).complete(function(err, data) {
+		console.log(data);
+	});
 	if (!req.files) {
 		return res.status(400).send("No files were uploaded");
 	}
