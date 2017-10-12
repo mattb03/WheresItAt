@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
   }
   res.render('profilePage', {
   	title: 'Where\'s it at?',
-  	jumboHeading: 'Secure an item'
+  	jumboHeading: 'Welcome to Where\'s It At\n Secure an item below.'
   });
 });
 

@@ -70,12 +70,12 @@ router.post('/', function authenticateUser(req, res, next) {
         console.log(req.session.userLastName);
         res.render('profilePage', {
           title: 'Where\'s it at?',
-          jumboHeading: 'Secure an item'
+          jumboHeading: 'Welcome to Where\'s It At\n Secure an item below.'
         });
       } catch(err) {
         // user not registered in database/website
         console.log("USER NOT FOUND");
-        res.render('index');
+        res.render('signup');
       }
 
   }

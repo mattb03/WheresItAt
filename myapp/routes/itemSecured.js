@@ -21,7 +21,10 @@ router.post('/', function(req, res, next) {
 
 	// go back if ther was no file or item name
 	if (!req.files || req.body.itemName < 1) {
-		res.redirect('/profilePage');
+		res.render('profilePage', {
+			title: 'Where\'s it at?',
+			jumboHeading: 'Welcome to Where\'s It At\n Secure an item below.'
+		});
 	}
 	let file = req.files.itemPicture;
 	file.mv("public/images/" + file.name, function(err) {

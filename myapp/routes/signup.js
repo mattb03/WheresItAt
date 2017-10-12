@@ -72,7 +72,10 @@ router.post('/', function doesUserExist(req, res) {
       if (err)
         throw err;
       console.log(result);
-      res.send("New user \"" + newUser.email + "\" inserted into db");
+      res.render('profilePage', {
+        title: 'Where\'s it at?',
+        jumboHeading: 'Welcome to Where\'s It At\n Secure an item below.'
+      });
     });
   
 
