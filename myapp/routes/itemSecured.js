@@ -16,29 +16,41 @@ router.get('/', function(req, res, next) {
 	
 });
 
-/* POST /submitComment */
+/* POST /itemSecured */
 router.post('/', function(req, res, next) {
 
 	// go back if ther was no file or item name
 	if (!req.files || req.body.itemName < 1) {
 		res.redirect('/profilePage');
 	}
-	
+	let file = req.files.itemPicture;
+	file.mv("public/images/" + file.name, function(err) {
+		if (err) {
+			console.log("Image could not be saved to file system");
+			throw err;
+		}
+	});
   	let post = {
-		email: req.user.email,
+		email: global.userEmail,
 		itemName: req.body.itemName,
 		itemDescription: req.body.itemDescription,
-		fileName: file.name,
-		image: file.data
+		fileName: req.files.itemPicture.name,
+		imagePath: "public/images/" + file.name
 	};
+
 	// '?' is a placeholder for the second argument
 	// db.query(query, placeholder, callback function)
 	let sql = "INSERT INTO images SET ?";
 	let query = db.query(sql, post, function(err, result) {
 		if (err) {
+			file.mv("public/trash/images/" + file.name, function(err) {
+				if (err) {
+					console.log("Couldnt move \"" + file.name + "\" to trash directory. Delete manually.");
+					throw err;
+				}
+			});
 			throw err;
 		}
-		console.log(result);
 
 		res.render("itemSecured", {
 		itemname: post.itemName

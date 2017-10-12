@@ -8,13 +8,6 @@ var bodyParser = require('body-parser');
 var fileUpload = require('express-fileupload');
 
 
-var index = require('./routes/index');
-var login = require('./routes/login');
-var signup = require('./routes/signup');
-var profilePage = require('./routes/profilePage');
-var itemSecured = require('./routes/itemSecured');
-var userItems = require('./routes/userItems');
-
 var app = express();
 
 // view engine setup
@@ -29,6 +22,23 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload());
+app.use(session({
+	cookie: {
+		path: '/',
+		httpOnly: false,
+		maxAge: 24 * 60 * 60 * 1000
+	},
+	secret: "my secret",
+	saveUninitialized: true,
+	resave: true
+}));
+
+var index = require('./routes/index');
+var login = require('./routes/login');
+var signup = require('./routes/signup');
+var profilePage = require('./routes/profilePage');
+var itemSecured = require('./routes/itemSecured');
+var userItems = require('./routes/userItems');
 
 app.use('/', index);
 app.use('/login', login);

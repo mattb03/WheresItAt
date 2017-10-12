@@ -18,14 +18,17 @@ db.connect(function (err) {
 });
 
 router.get('/', function(req, res, next) {
-  console.log(req.app.get("userEmail"));
-  let sql = "SELECT * FROM images WHERE email=\"matt_b03@yahoo.com\";"
+  if (!req.session.user) {
+    console.log("USER IS LOGEGD IN ");
+    res.render('index');
+  } 
+  console.log(req.session.user);
+  let sql = "SELECT * FROM images WHERE email=\"" + req.session.user + "\";"
   let query = db.query(sql, function(err, result) {
     if (err)
       throw err;
     
-    console.log(result);
-    
+  console.log(result)    
     res.render('userItems', { 
       title: 'Your secured items',
       userItems: result

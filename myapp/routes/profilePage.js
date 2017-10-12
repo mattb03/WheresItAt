@@ -32,13 +32,17 @@ db.connect(function (err) {
 });
 
 router.get('/', function(req, res, next) {
+  if (!req.session.user) {
+    console.log("USER IS LOGEGD IN ");
+    res.render('index');
+  } 
   res.render('profilePage', { title: 'Welcome to your page account' });
 });
 
 // '/' is relative to the page youre on. the page youre on
 // is your root path ie. the root path for this file is '/profilePage'
 // so '/profilePage' = '/'
-router.post('/', function isAuthenticated(req, res, next) {
+router.post('/', function authenticateUser(req, res, next) {
     let sql = "SELECT * FROM users WHERE email=\"" + req.body.email + "\"";
     console.log(req.body);
     let query = db.query(sql, function(err, result) {
@@ -47,15 +51,27 @@ router.post('/', function isAuthenticated(req, res, next) {
         res.render('/');
       }
       try {
-        console.log(result[0].password);
         var userPassword = result[0].password;
-        console.log(req.body.password);
+
         if (!bcrypt.compareSync(req.body.password, userPassword)) {
           // wrong password
           res.render('index');
         }
         // valid password
-        res.render('profilePage');
+        // log hte user in globally
+        global.userEmail = result[0].email;
+        global.userFirstName = result[0].firstName;
+        global.userLastName = result[0].lastName;
+        req.session.user = result[0].email;
+        req.session.userFirstName = result[0].firstName;
+        req.session.userLastName = result[0].lastName;
+        console.log(req.session.user);
+        console.log(req.session.userFirstName);
+        console.log(req.session.userLastName);
+        res.render('profilePage', {
+          title: 'Where\'s it at?',
+          jumboHeading: 'Secure an item'
+        });
       } catch(err) {
         // user not registered in database/website
         console.log("USER NOT FOUND");
