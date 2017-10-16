@@ -117,17 +117,87 @@ router.get('/profilePage', function(req, res, next) {
 	});	
 });
 
-	// '/' is relative to the page youre on. the page youre on
-	// is your root path ie. the root path for this file is '/profilePage'
-	// so '/profilePage' = '/'
-	router.post('/profilePage', passport.authenticate('local', { failureRedirect: '/signup'}),
-	  function(req, res) {
-	    res.send("user logged in");
-	  }
-	);
+// '/' is relative to the page youre on. the page youre on
+// is your root path ie. the root path for this file is '/profilePage'
+// so '/profilePage' = '/'
+router.post('/profilePage', function authenticateUser(req, res, next) {
+	console.log("ROUTE FOUND FOR /profilePage");
+    let sql = "SELECT * FROM users WHERE email=\"" + req.body.email + "\"";
+    console.log(req.body);
+    let query = db.query(sql, function(err, result) {
+      if (result.length > 0) {
+        // user not in databse
+        res.render('/');
+      }
+      try {
+        var userPassword = result[0].password;
+
+        if (!bcrypt.compareSync(req.body.password, userPassword)) {
+          // wrong password
+          res.render('index');
+        }
+        // valid password
+        // log hte user in globally
+        global.userEmail = result[0].email;
+        global.userFirstName = result[0].firstName;
+        global.userLastName = result[0].lastName;
+        req.session.user = result[0].email;
+        req.session.userFirstName = result[0].firstName;
+        req.session.userLastName = result[0].lastName;
+        console.log(req.session.user);
+        console.log(req.session.userFirstName);
+        console.log(req.session.userLastName);
+        res.render('profilePage', {
+          title: 'Where\'s it at?',
+          jumboHeading: 'Welcome to Where\'s It At\n Secure an item below.'
+        });
+      } catch(err) {
+        // user not registered in database/website
+        console.log("USER NOT FOUND");
+        res.render('signup');
+      }
+
+  }
+  );
+});
 
 }
 
+router.get('/logout', function(req, res, next) {
+	console.log("ROUTE IS FOUND");
+	let sql = "SELECT * FROM users WHERE email=\"" + req.body.email + "\"";
+    console.log(req.body);
+    delete req.session.user_id;
+    /*
+    let query = db.query(sql, function(err, result) {
+      if (result.length > 0) {
+        // user not in databse
+        res.render('index');
+      }
+      try {
+      	// set all user variables to empty
+        global.userEmail = "";
+        global.userFirstName = "";
+        global.userLastName = "";
+        req.session.user = "";
+        req.session.userFirstName = "";
+        req.session.userLastName = "";
+        console.log(req.session.user);
+        console.log(req.session.userFirstName);
+        console.log(req.session.userLastName);
+        res.render('index', {
+          title: 'Where\'s it at?',
+          jumboHeading: 'Login to Where\'s It At'
+        });
+      } catch(err) {
+        // user not registered in database/website
+        console.log("ERROR: Logout route requested but user not found in database.");
+        res.render('index');
+      }
+
+  }
+  );*/
+});
 
 
 

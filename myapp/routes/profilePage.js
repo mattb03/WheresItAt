@@ -18,25 +18,31 @@ var upload = multer({ storage: storage })
 var $ = require('jQuery');
 // Create connection to db
 var db = mysql.createConnection({
-  host : 'localhost',
-  user : 'matt',
-  password : '',
-  database : 'WheresItAtDB'
+    host : 'localhost',
+    user : 'matt',
+    password : '',
+    database : 'WheresItAtDB'
 });
 
 // Connect to db
 db.connect(function (err) {
-  if (err)
-    throw err;
-  console.log("MySQL connected in profilePage.js....");
+    if (err)
+      throw err;
+    console.log("MySQL connected in profilePage.js....");
 });
 
 router.get('/', function(req, res, next) {
-  if (!req.session.user) {
-    console.log("USER IS LOGEGD IN ");
-    res.render('index');
-  } 
-  res.render('profilePage', { title: 'Welcome to your page account' });
+    if (!req.session.user) {
+      console.log("USER IS LOGEGD IN ");
+      res.render('index', { 
+        title: 'Where\'s it at?',
+        jumboHeading: 'You are now logged in'
+      }); 
+    } 
+    res.render('profilePage', {
+      title: 'Where\'s it at?',
+      jumboHeading: 'Welcome to Where\'s It At\n Secure an item below.'
+    });
 });
 
 // '/' is relative to the page youre on. the page youre on
