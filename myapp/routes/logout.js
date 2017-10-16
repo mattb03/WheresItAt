@@ -3,9 +3,12 @@ var router = express.Router();
 
 router.get('/', function(req, res, next) {
     console.log("ROUTE IS FOUND");
-    let sql = "SELECT * FROM users WHERE email=\"" + req.body.email + "\"";
+    console.log(req.session.user);
+    let sql = "SELECT * FROM users WHERE email=\"" + req.session.user + "\"";
     console.log(req.body);
-    delete req.session.user_id;
+    delete req.session.user;
+    delete req.session.userFirstName;
+    delete req.session.userLastName;
     res.render('index', { 
       title: 'Where\'s it at?',
       jumboHeading: 'You are now logged in'
@@ -38,7 +41,8 @@ router.get('/', function(req, res, next) {
       }
 
   }
-  );*/
+  );
+  */
 });
 
 router.post('/', function(req, res, next) {
