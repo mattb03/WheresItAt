@@ -72,9 +72,16 @@ router.post('/', function doesUserExist(req, res) {
       if (err)
         throw err;
       console.log(result);
+      // log hte user in globally
+      global.userEmail = req.body.email;
+      global.userFirstName = req.body.firstName;
+      global.userLastName = req.body.lastName;
+      req.session.user = req.body.email;
+      req.session.userFirstName = req.body.firstName;
+      req.session.userLastName = req.body.lastName;
       res.render('profilePage', {
         title: 'Where\'s it at?',
-        jumboHeading: 'Welcome to Where\'s It At\n Secure an item below.'
+        jumboHeading: 'Secure an item below.'
       });
     });
   

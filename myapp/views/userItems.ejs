@@ -2,6 +2,9 @@
   <!-- include the template layout -->
   <% include layouts/layout.ejs %>
 
+  <link href="/stylesheets/userItems.css" rel="stylesheet">
+
+
   <!-- the body tag for the layout -->
     <div class="container">
       <div class="header clearfix">
@@ -13,7 +16,7 @@
             <li role="presentation"><a href="/userItems">Your items</a></li>
           </ul>
         </nav>
-        <h3 class="text-muted">RateMyCourse</h3>
+        <h3 class="text-muted">Where's It At</h3>
       </div>
 
       <div class="jumbotron">
@@ -32,11 +35,19 @@
               <h3>Where it's at:</h3>
               <p><%= userItems[i].itemDescription %></p>
             <% } %>
+          <% var removeBtnId = "removeBtn" + i; %>
+            
+            <button type="button" class="btn btn-primary btn-xs">XSmall</button>
+
+
+            
+
           </div>
+
         <% } %>
         
       </div>
-            
+
       <footer class="footer">
         <p>&copy; 2016 Company, Inc.</p>
       </footer>

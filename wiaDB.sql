@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.17, for macos10.12 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: localhost    Database: WheresItAtDB
+-- Host: 127.0.0.1    Database: wheresitatdb
 -- ------------------------------------------------------
--- Server version	5.7.19
+-- Server version	5.7.19-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -30,7 +30,7 @@ CREATE TABLE `images` (
   `fileName` varchar(255) DEFAULT NULL,
   `imagePath` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +39,7 @@ CREATE TABLE `images` (
 
 LOCK TABLES `images` WRITE;
 /*!40000 ALTER TABLE `images` DISABLE KEYS */;
-INSERT INTO `images` VALUES (3,'matt.benavides92@gmail.com','something','','Scan 15.jpeg','public/images/Scan 15.jpeg'),(4,'matt.benavides92@gmail.com','fdaf','','quiz2b.jpeg','public/images/quiz2b.jpeg'),(5,'matt.benavides92@gmail.com','something','','Scan 16.jpeg','public/images/Scan 16.jpeg'),(6,'matt.benavides92@gmail.com','something','','Scan 15.jpeg','public/images/Scan 15.jpeg'),(7,'matt.benavides92@gmail.com','something','a desriotipon','quiz2b.jpeg','public/images/quiz2b.jpeg'),(8,'matt.benavides92@gmail.com','blah','','Scan 15.jpeg','public/images/Scan 15.jpeg'),(9,'matt.benavides92@gmail.com','blah','','Scan 15.jpeg','public/images/Scan 15.jpeg'),(10,'matt.benavides92@gmail.com','blah','','Scan 14.jpeg','public/images/Scan 14.jpeg'),(11,'matt.benavides92@gmail.com','blah','','Scan 14.jpeg','public/images/Scan 14.jpeg'),(12,NULL,'homework','at utsa','Scan 11.jpeg','public/images/Scan 11.jpeg'),(13,'ljimenez311@yahoo.com','homework 2','laksjfd','Scan 17.jpeg','public/images/Scan 17.jpeg'),(14,'ljimenez311@yahoo.com','file','','quiz2b.jpeg','public/images/quiz2b.jpeg');
+INSERT INTO `images` VALUES (3,'matt.benavides92@gmail.com','something','','Scan 15.jpeg','public/images/Scan 15.jpeg'),(4,'matt.benavides92@gmail.com','fdaf','','quiz2b.jpeg','public/images/quiz2b.jpeg'),(5,'matt.benavides92@gmail.com','something','','Scan 16.jpeg','public/images/Scan 16.jpeg'),(6,'matt.benavides92@gmail.com','something','','Scan 15.jpeg','public/images/Scan 15.jpeg'),(7,'matt.benavides92@gmail.com','something','a desriotipon','quiz2b.jpeg','public/images/quiz2b.jpeg'),(8,'matt.benavides92@gmail.com','blah','','Scan 15.jpeg','public/images/Scan 15.jpeg'),(9,'matt.benavides92@gmail.com','blah','','Scan 15.jpeg','public/images/Scan 15.jpeg'),(10,'matt.benavides92@gmail.com','blah','','Scan 14.jpeg','public/images/Scan 14.jpeg'),(11,'matt.benavides92@gmail.com','blah','','Scan 14.jpeg','public/images/Scan 14.jpeg'),(12,NULL,'homework','at utsa','Scan 11.jpeg','public/images/Scan 11.jpeg'),(13,'ljimenez311@yahoo.com','homework 2','laksjfd','Scan 17.jpeg','public/images/Scan 17.jpeg'),(14,'ljimenez311@yahoo.com','file','','quiz2b.jpeg','public/images/quiz2b.jpeg'),(15,'test4@user4.com','express project ','asdf','Install Express and EJS.png','public/images/Install Express and EJS.png'),(16,'test4@user4.com','setup express/ejs scernenshot','','Install Express and EJS.png','public/images/Install Express and EJS.png');
 /*!40000 ALTER TABLE `images` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -138,7 +138,7 @@ CREATE TABLE `users` (
   `email` varchar(255) DEFAULT NULL,
   `password` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -147,7 +147,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (4,'Matthew','Benavides','matt.benavides92@gmail.com','$2a$08$yh.AUusyn2IplAeBNOcZ1.YugJZDsZrTpAaYHS8m8jAz34Q71Qdra'),(5,'apple','iphone','apple@iphone.com','$2a$08$xJ51mQe9C7mnZ7QZ8gHKFuKRQXPZLJZugM8n2.w7M6Bc.b4ATzePm'),(6,'foo','bar','foo@bar.com','$2a$08$Z.Ki63GhJ/6gXLIxa7J2WO5hyLtgfSWAIyFiTtjGYPRKImUqi2vci'),(7,'lydia','jimenez','ljimenez311@yahoo.com','$2a$08$gG81AzkbzfsgnS869SWUF.aFOMSF9u75CgMTXx.YJzP1tm7mjE.iu');
+INSERT INTO `users` VALUES (4,'Matthew','Benavides','matt.benavides92@gmail.com','$2a$08$yh.AUusyn2IplAeBNOcZ1.YugJZDsZrTpAaYHS8m8jAz34Q71Qdra'),(5,'apple','iphone','apple@iphone.com','$2a$08$xJ51mQe9C7mnZ7QZ8gHKFuKRQXPZLJZugM8n2.w7M6Bc.b4ATzePm'),(6,'foo','bar','foo@bar.com','$2a$08$Z.Ki63GhJ/6gXLIxa7J2WO5hyLtgfSWAIyFiTtjGYPRKImUqi2vci'),(7,'lydia','jimenez','ljimenez311@yahoo.com','$2a$08$gG81AzkbzfsgnS869SWUF.aFOMSF9u75CgMTXx.YJzP1tm7mjE.iu'),(8,'test','user','testuser@test.com','$2a$08$XrR8Hf9JwmozO.Ol5pVSauZ/NpW9QLfM/RGb2X3U3RDUbZdapGVNO'),(9,'test2','user2','test2user@com','$2a$08$0DP0ONd9pYdQFqBj6xrrYO0fdlkVRyyQ8me62jurstE6l7sXwZrM.'),(10,'test3','user3','test3@user3.com','$2a$08$oTZ2QTTW6YXOCn9h4uDc2.yMU9ArYU9S0pvW58K2IZVbK.FQWHDca'),(11,'test4','user4','test4@user4.com','$2a$08$mQ0olZcdGIqI56v2TKCVY.V7w1XHcrq7P.ykdBsWb21TjGl5aC6Ri');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -160,4 +160,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-10-12 16:10:26
+-- Dump completed on 2017-10-16 20:28:43
