@@ -1,7 +1,10 @@
 var express = require('express');
 var router = express.Router();
+var ImageResize = require('node-image-resize');	// resize an image
 var fs = require('fs');
+var sizeOf = require('image-size');	// get dimensions of an image
 var mysql = require('mysql');
+
 // Create connection to db
 var db = mysql.createConnection({
   host : 'localhost',
@@ -23,10 +26,11 @@ router.post('/', function(req, res, next) {
 	if (!req.files || req.body.itemName < 1) {
 		res.render('profilePage', {
 			title: 'Where\'s it at?',
-			jumboHeading: 'Welcome to Where\'s It At\n Secure an item below.'
+			jumboHeading: 'Secure an item below.'
 		});
 	}
 	let file = req.files.itemPicture;
+
 	file.mv("public/images/" + file.name, function(err) {
 		if (err) {
 			console.log("Image could not be saved to file system");
@@ -46,6 +50,7 @@ router.post('/', function(req, res, next) {
 	let sql = "INSERT INTO images SET ?";
 	let query = db.query(sql, post, function(err, result) {
 		if (err) {
+			// if query errors move the image to the trash
 			file.mv("public/trash/images/" + file.name, function(err) {
 				if (err) {
 					console.log("Couldnt move \"" + file.name + "\" to trash directory. Delete manually.");
@@ -62,31 +67,5 @@ router.post('/', function(req, res, next) {
 
 });
 
-function getFilename(longName) {
-	var filename = longName;
-	var extension = "";
-	if ((i = filename.indexOf(".png")) > -1) {
-		// .png file
-		extension = ".png";
-
-	} else if ((i = filename.indexOf(".jpeg") > -1)) {
-		// .jpeg file
-		extension = ".jpeg";
-	} else if ((i = filename.indexOf(".jpg") > -1)) {
-		// .jpg file
-		extension = ".jpg";
-	} else {
-		// ??
-		res.send("wtf is that??");
-	}
-	i += extension.length();	// chop off end junk of filename
-	filename = filename.substring(0, i);
-	return filename;
-}
-
-function validateDBFS(filename, email) {
-	let sql = 
-		"SELECT * FROM images WHERE email=\"matt_b03@yahoo.com\";";
-}
 
 module.exports = router;

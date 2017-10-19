@@ -19,14 +19,14 @@
       <div class="jumbotron">
         <h3><%= itemname %> is now secure.</h3>
         <h3>Secure an item below:</h3>
-        <form method="post" id="uploadForm" name="uploadForm">
+        <form action="/itemSecured" method="post" id="uploadForm" name="uploadForm">
           Upload a picture of the item:
           <input type="file" id="itemPicture" name="itemPicture">
           Name of item:
           <input type="text" id="itemName" name="itemName" class="form-control">
           Description of location:
           <textarea id="itemDescription" name="itemDescription" class="form-control" rows="5"></textarea>
-          <input type="submit" id="loginButton" class="form-control">
+          <input type="submit" id="uploadButton" class="form-control">
         </form>
       </div>
 

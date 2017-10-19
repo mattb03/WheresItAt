@@ -19,39 +19,56 @@
         <h3 class="text-muted">Where's It At</h3>
       </div>
 
-      <div class="jumbotron">
-        <h3>Your secured items</h3>
+      <!-- <div class="jumbotron"> -->
+        <h3 class="centeredH3">Your secured items</h3>
         <script type="text/javascript">
           
 
         </script>
-        <% console.log(userItems[i]) %>
-
-        <% for (var i = 0; i < userItems.length; i++) { %>
-          <div class="well">
-            <h3><%= userItems[i].itemName %></h3>
-            <img src="http://localhost:3000/images/<%= userItems[i].fileName %>" class="img-responsive">
-            <% if (userItems[i].itemDescription) { %>
-              <h3>Where it's at:</h3>
-              <p><%= userItems[i].itemDescription %></p>
-            <% } %>
-          <% var removeBtnId = "removeBtn" + i; %>
-            
-            <button type="button" class="btn btn-primary btn-xs">XSmall</button>
-
-
-            
-
-          </div>
-
-        <% } %>
         
-      </div>
+        <div id="itemsDiv">
+          <% for (var i = 0; i < userItems.length; i++) { %>
+          <% console.log(userItems[i].itemName) %>
+            <div id="itemDiv<%= i %>" class="well text-center">
+              <h3><%= userItems[i].itemName %></h3>
+              <img src="http://localhost:3000/images/<%= userItems[i].fileName %>" 
+                id="fileNo<%= i %>" name="<%= userItems[i].fileName %>" class="img-responsive" max-width="480" max-height="640">
+              <% if (userItems[i].itemDescription) { %>
+                <h3>Where it's at:</h3>
+                <p><%= userItems[i].itemDescription %></p>
+              <% } %>
+            <% var removeBtnId = "removeBtn" + i; %>
+            <% var fileName = "fileName" + i %>
+            <button type="button" id="<%= removeBtnId %>" class="btn btn-primary btn-md">Remove Item</button>
+
+              <div id="removeDialog<%= i %>">
+                Are you sure you want to remove this item?
+
+
+                  <input type="button" id="yesButton<%= i %>" class="btn btn-info" value="Yes">
+                  <input type="button" id="noButton<%= i %>" class="btn btn-info" value="No">
+                
+                
+              </div>
+            <br>
+            <br>
+            </div>
+          <% } %>
+
+
+
+        </div>
+            
+
+
+        
+      <!-- </div> -->
 
       <footer class="footer">
         <p>&copy; 2016 Company, Inc.</p>
       </footer>
 
     </div> <!-- /container -->
+
 
 <script src="./javascripts/userItems.js"></script>

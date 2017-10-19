@@ -40,6 +40,7 @@ var itemSecured = require('./routes/itemSecured');
 var userItems = require('./routes/userItems');
 var logout = require('./routes/logout');
 var about = require('./routes/about');
+var removeItem = require('./routes/removeItem');
 
 
 app.use('/', index);
@@ -50,6 +51,7 @@ app.use('/itemSecured', itemSecured);
 app.use('/userItems', userItems);
 app.use('/logout', logout);
 app.use('/about', about);
+app.use('/removeItem', removeItem);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

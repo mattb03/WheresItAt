@@ -1,0 +1,20 @@
+.jumbotron {
+  min-width: 100%;
+  min-height: 100vh;
+  padding: 1em;
+}
+
+/* TODO: figure out how to resize images inside jumbotron if necessary 
+.itemsDiv {
+	width: 300;
+	height: 300;
+	max-width: 300;
+	max-height:300; 
+
+}
+*/
+.centeredH3 {
+	text-align: center;
+}
+
+
