@@ -1,28 +1,28 @@
 $(document).ready(function() {
-	$("[id^=removeDialog]").hide();
+	$("[id^=removeDialog]").hide()
 	$("button").click(function() {
 		
-		var id = $(this).attr('id');
-		console.log(id);
+		var id = $(this).attr('id')
+		console.log(id)
 		// get the number of the dialog id
-		var length = "removeBtn".length;
-		console.log("LENGTH: " + length);
-		var num = id.substring(length);
-		console.log("NUM: " + num);
+		var length = "removeBtn".length
+		console.log("LENGTH: " + length)
+		var num = id.substring(length)
+		console.log("NUM: " + num)
 
 		$("[id^=removeDialog]").dialog({
 			autoOpen: false
-		});
-		$("#removeDialog" + num).dialog("open");
+		})
+		$("#removeDialog" + num).dialog("open")
 
 		$("#noButton").click(function() {
-			$("#removeDialog" + num).dialog("close");
-		});
+			$("#removeDialog" + num).dialog("close")
+		})
 		$("[id^=yesButton]").click(function() {
 
-			var image = $("#fileNo" + num);
-			var fileName = image.attr('name');
-			console.log("Sending " + fileName);
+			var image = $("#fileNo" + num)
+			var fileName = image.attr('name')
+			console.log("Sending " + fileName)
 			$.ajax({
 				type: 'POST',
 				cache: false,
@@ -33,13 +33,13 @@ $(document).ready(function() {
 					fileName: image.attr('name')
 				}),
 				success: function(data) {
-					$("#removeDialog" + num).dialog("close");
-					$("#itemDiv" + num).remove();
-				}});
-			});
+					$("#removeDialog" + num).dialog("close")
+					$("#itemDiv" + num).remove()
+				}})
+			})
 			
 
 
 
-	});
-});
+	})
+})
