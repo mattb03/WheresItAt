@@ -6,7 +6,11 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var fileUpload = require('express-fileupload');
+var jsdom = require('jsdom');
+const { JSDOM } = jsdom;
 
+const { document } = (new JSDOM('')).window;
+global.document = document;
 var app = express();
 
 

@@ -15,7 +15,6 @@ var storage = multer.diskStorage({
   }
 })
 var upload = multer({ storage: storage })
-var $ = require('jQuery');
 // Create connection to db
 var db = mysql.createConnection({
     host : 'localhost',
