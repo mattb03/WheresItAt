@@ -27,18 +27,16 @@ router.post('/', function(req, res, next) {
 	let sql = "SELECT * FROM images WHERE email=\"" + req.session.user + "\" AND fileName=\"" + req.body.fileName + "\"";
 	let query = db.query(sql, function(err, result) {
 		if (err) {
-			console.log("Could not delete image row from database");
+			console.log("Could not delete image row from database", err);
 			throw err;
 		}
 		// get image path from row
 		console.log(result[0].imagePath);
-		
-		fs.rename("public/images/" + result[0].fileName, "public/trash/images/" + result[0].fileName, function(err) {
+		fs.rm("myapp/public/images/" + result[0].fileName, function(err) {
 			if (err) {
-				console.log("Could not move item to trash");
-				throw err;
+				console.log("Could not remove image.", err);
 			}
-			console.log(result[0].fileName + " has been moved to trash");
+			console.log("Image was removed successfully!");
 		});
 
 		let deleteRow = "DELETE FROM images WHERE email=\"" + req.session.user + "\" AND fileName=\"" + result[0].fileName + "\"";
