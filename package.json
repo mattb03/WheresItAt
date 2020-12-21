@@ -1,0 +1,30 @@
+{
+  "name": "wheresitat",
+  "version": "1.0.0",
+  "description": "## Project setup ``` npm install ```",
+  "main": "index.js",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "bcrypt-nodejs": "0.0.3",
+    "express-fileupload": "^1.2.0",
+    "image-size": "^0.9.3",
+    "jsdom": "^16.4.0",
+    "node-image-resize": "0.0.2",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mattb03/WheresItAt.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mattb03/WheresItAt/issues"
+  },
+  "homepage": "https://github.com/mattb03/WheresItAt#readme"
+}

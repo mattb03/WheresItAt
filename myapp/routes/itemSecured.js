@@ -30,8 +30,9 @@ router.post('/', function(req, res, next) {
 		});
 	}
 	let file = req.files.itemPicture;
-
-	file.mv("public/images/" + file.name, function(err) {
+	const path = "myapp/public/images/" + file.name;
+	console.log(path);
+	file.mv(path, function(err) {
 		if (err) {
 			console.log("Image could not be saved to file system");
 			throw err;

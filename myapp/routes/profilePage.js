@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
-var mysqlx = require('@mysql/xdevapi');
+//var mysqlx = require('@mysql/xdevapi');
 var fsys = require('fs');
 var multer = require('multer');
 var bcrypt = require('bcrypt');
@@ -41,7 +41,7 @@ router.get('/', function(req, res, next) {
       }); 
     } 
     res.render('profilePage', {
-      title: 'Where\'s it at?',
+      title: 'Where\'s It At?',
       jumboHeading: 'Secure an item below.'
     });
 });
@@ -50,18 +50,24 @@ router.get('/', function(req, res, next) {
 // is your root path ie. the root path for this file is '/profilePage'
 // so '/profilePage' = '/'
 router.post('/', function authenticateUser(req, res, next) {
-    let sql = "SELECT * FROM users WHERE email=\"" + req.body.email + "\"";
+    let sql = "SELECT * FROM users WHERE email=\"" + req.body.email + "\"" + ";";
+    console.log("@@@@@ SQL @@@@@");
+    console.log(sql);
+    console.log("!!!!!! REQUEST BODY !!!!!!!!");
     console.log(req.body);
     let query = db.query(sql, function(err, result) {
-      if (result.length > 0) {
+      if (result.length < 1) {
         // user not in databse
-        res.render('/');
+        console.log("***** USER NOT IN DB ******");
+        console.log(result);
+        res.render('signup');
       }
       try {
         var userPassword = result[0].password;
 
         if (!bcrypt.compareSync(req.body.password, userPassword)) {
           // wrong password
+          console.log("((((( WRONG PASSWORD ))))))");
           res.render('index');
         }
         // valid password

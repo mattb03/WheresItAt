@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
-var mysqlx = require('@mysql/xdevapi');
+//var mysqlx = require('@mysql/xdevapi');
 
 const options = { user: 'root', password: 'MyNewPass', schema: 'mySchema' };
 
@@ -18,7 +18,7 @@ var db = mysql.createConnection({
 db.connect(function (err) {
   if (err)
     throw err;
-  console.log("MySQL connected in profilePage.js....");
+  console.log("MySQL connected in userItems.js....");
 });
 
 router.get('/', function(req, res, next) {
