@@ -141,9 +141,11 @@ router.post('/profilePage', function authenticateUser(req, res, next) {
         global.userEmail = result[0].email;
         global.userFirstName = result[0].firstName;
         global.userLastName = result[0].lastName;
+        global.isUserLoggedIn = true;
         req.session.user = result[0].email;
         req.session.userFirstName = result[0].firstName;
         req.session.userLastName = result[0].lastName;
+        req.session.isLoggedIn = true;
         console.log(req.session.user);
         console.log(req.session.userFirstName);
         console.log(req.session.userLastName);

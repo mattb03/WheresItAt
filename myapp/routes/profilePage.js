@@ -36,7 +36,7 @@ router.get('/', function(req, res, next) {
     if (!req.session.user) {
       console.log("USER IS LOGEGD IN ");
       res.render('index', { 
-        title: 'Where\'s it at?',
+        title: 'Where\'s It At?',
         jumboHeading: 'You are now logged in'
       }); 
     } 
@@ -75,9 +75,11 @@ router.post('/', function authenticateUser(req, res, next) {
         global.userEmail = result[0].email;
         global.userFirstName = result[0].firstName;
         global.userLastName = result[0].lastName;
+        global.isUserLoggedIn = true;
         req.session.user = result[0].email;
         req.session.userFirstName = result[0].firstName;
         req.session.userLastName = result[0].lastName;
+        req.session.isUserLoggedIn = true;
         console.log(req.session.user);
         console.log(req.session.userFirstName);
         console.log(req.session.userLastName);

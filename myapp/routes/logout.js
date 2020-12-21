@@ -5,10 +5,12 @@ router.get('/', function(req, res, next) {
     console.log("ROUTE IS FOUND");
     console.log(req.session.user);
     let sql = "SELECT * FROM users WHERE email=\"" + req.session.user + "\"";
-    console.log(req.body);
+    
+    console.log(req.session);
     delete req.session.user;
     delete req.session.userFirstName;
     delete req.session.userLastName;
+    delete req.session.isUserLoggedIn;
     res.render('index', { 
       title: 'Where\'s it at?',
       jumboHeading: 'You are now logged in'

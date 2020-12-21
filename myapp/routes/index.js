@@ -3,15 +3,18 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+	console.log('$$$$$$$ global varaible $$$$$$$$');
+	console.log(req.session.isUserLoggedIn);
   if (!req.session.user) {
   	res.render('index', { 
   		title: 'Where\'s it at?',
-  		jumboHeading: 'You are now logged in'
+		  jumboHeading: 'Login to Where\'s It At',		  
   	});
   }
+  isUserLoggedIn = true;
   res.render('profilePage', {
   	title: 'Where\'s it at?',
-  	jumboHeading: 'Secure an item below.'
+	  jumboHeading: 'Secure an item below.'
   });
 });
 
