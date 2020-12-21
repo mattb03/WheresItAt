@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
+var mysqlx = require('@mysql/xdevapi');
 var fsys = require('fs');
 var multer = require('multer');
 var bcrypt = require('bcrypt');
@@ -15,12 +16,13 @@ var storage = multer.diskStorage({
   }
 })
 var upload = multer({ storage: storage })
+
 // Create connection to db
 var db = mysql.createConnection({
-    host : 'localhost',
-    user : 'matt',
-    password : '',
-    database : 'WheresItAtDB'
+  host : 'localhost',
+  user : 'root',
+  password : '',
+  database : 'WheresItAtDB'
 });
 
 // Connect to db

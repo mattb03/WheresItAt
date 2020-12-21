@@ -8,7 +8,6 @@ var bodyParser = require('body-parser');
 var fileUpload = require('express-fileupload');
 var jsdom = require('jsdom');
 const { JSDOM } = jsdom;
-
 const { document } = (new JSDOM('')).window;
 global.document = document;
 var app = express();
@@ -74,5 +73,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+app.listen(3000);
 
 module.exports = app;

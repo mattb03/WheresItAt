@@ -1,0 +1,8 @@
+To solve MySQL 8 caching_sha2_password issues do the following:
+1. ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '';
+-- or
+optional: CREATE USER 'foo'@'%' IDENTIFIED WITH mysql_native_password BY 'bar';
+-- then
+2. FLUSH PRIVILEGES;
+
+simply do 1 and 2 to get around the MySQL caching_sha2_password issues!

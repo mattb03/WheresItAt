@@ -1,11 +1,15 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
+var mysqlx = require('@mysql/xdevapi');
+
+const options = { user: 'root', password: 'MyNewPass', schema: 'mySchema' };
+
 
 // Create connection to db
 var db = mysql.createConnection({
   host : 'localhost',
-  user : 'matt',
+  user : 'root',
   password : '',
   database : 'WheresItAtDB'
 });
