@@ -4,6 +4,7 @@ var ImageResize = require('node-image-resize');	// resize an image
 var fs = require('fs');
 var sizeOf = require('image-size');	// get dimensions of an image
 var mysql = require('mysql');
+const { v4: uuidv4 } = require('uuid');
 
 // Create connection to db
 var db = mysql.createConnection({
@@ -30,7 +31,10 @@ router.post('/', function(req, res, next) {
 		});
 	}
 	let file = req.files.itemPicture;
-	const path = "myapp/public/images/" + file.name;
+	//const path = "public/images/" + file.name;
+	const filename = uuidv4();
+	const path = "public/images/" + filename;
+	console.log(uuidv4());
 	console.log(path);
 	file.mv(path, function(err) {
 		if (err) {
@@ -42,8 +46,8 @@ router.post('/', function(req, res, next) {
 		email: global.userEmail,
 		itemName: req.body.itemName,
 		itemDescription: req.body.itemDescription,
-		fileName: req.files.itemPicture.name,
-		imagePath: "public/images/" + file.name
+		fileName: filename,
+		imagePath: path
 	};
 
 	// '?' is a placeholder for the second argument

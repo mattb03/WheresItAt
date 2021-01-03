@@ -3,8 +3,6 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-	console.log('$$$$$$$ global varaible $$$$$$$$');
-	console.log(req.session.isUserLoggedIn);
   if (!req.session.user) {
   	res.render('index', { 
   		title: 'Where\'s it at?',

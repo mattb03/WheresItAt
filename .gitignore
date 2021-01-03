@@ -2,3 +2,4 @@ myapp/node_modules/
 myapp/node_modules/*
 node_modules/
 node_modules/*
+myapp/public/images/*

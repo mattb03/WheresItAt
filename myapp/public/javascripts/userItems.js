@@ -21,8 +21,11 @@ $(document).ready(function() {
 		$("[id^=yesButton]").click(function() {
 
 			var image = $("#fileNo" + num);
-			var fileName = image.attr('name');
-			console.log("Sending " + fileName);
+			var name = image.attr('name');
+			if (name === undefined) {
+				return;
+			}
+			console.log("Sending " + name);
 			$.ajax({
 				type: 'POST',
 				cache: false,
@@ -35,11 +38,10 @@ $(document).ready(function() {
 				success: function(data) {
 					$("#removeDialog" + num).dialog("close");
 					$("#itemDiv" + num).remove();
+				}, 
+				error: function(req, status, error) {
+					console.log("##### ERORR #####: ", error);
 				}});
 			});
-			
-
-
-
 	});
 });

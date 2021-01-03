@@ -21,18 +21,18 @@ router.get('/', function(req, res, next) {
 
 /* POST /removeItem */
 router.post('/', function(req, res, next) {
-
-	console.log(req.body.fileName);
-
+	console.log("FILENAME: ", req.body.fileName);
+	console.log(req.body);
 	let sql = "SELECT * FROM images WHERE email=\"" + req.session.user + "\" AND fileName=\"" + req.body.fileName + "\"";
+	console.log("SQL: " + sql);
 	let query = db.query(sql, function(err, result) {
 		if (err) {
 			console.log("Could not delete image row from database", err);
 			throw err;
 		}
 		// get image path from row
-		console.log(result[0].imagePath);
-		fs.rm("myapp/public/images/" + result[0].fileName, function(err) {
+		console.log(result[0]);
+		fs.rm("public/images/" + result[0].fileName, function(err) {
 			if (err) {
 				console.log("Could not remove image.", err);
 			}
@@ -50,6 +50,7 @@ router.post('/', function(req, res, next) {
 	});
 	res.end();
 });
+
 
 
 module.exports = router;

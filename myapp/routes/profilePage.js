@@ -51,15 +51,9 @@ router.get('/', function(req, res, next) {
 // so '/profilePage' = '/'
 router.post('/', function authenticateUser(req, res, next) {
     let sql = "SELECT * FROM users WHERE email=\"" + req.body.email + "\"" + ";";
-    console.log("@@@@@ SQL @@@@@");
-    console.log(sql);
-    console.log("!!!!!! REQUEST BODY !!!!!!!!");
-    console.log(req.body);
     let query = db.query(sql, function(err, result) {
       if (result.length < 1) {
         // user not in databse
-        console.log("***** USER NOT IN DB ******");
-        console.log(result);
         res.render('signup');
       }
       try {
@@ -67,7 +61,6 @@ router.post('/', function authenticateUser(req, res, next) {
 
         if (!bcrypt.compareSync(req.body.password, userPassword)) {
           // wrong password
-          console.log("((((( WRONG PASSWORD ))))))");
           res.render('index');
         }
         // valid password
