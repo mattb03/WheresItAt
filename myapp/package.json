@@ -17,7 +17,7 @@
     "express": "~4.15.2",
     "express-fileupload": "^0.3.0",
     "express-session": "^1.15.5",
-    "handlebars": "^4.0.10",
+    "handlebars": "^4.7.7",
     "image-size": "^0.6.1",
     "jquery": "^3.2.1",
     "jsdom": "^16.4.0",
